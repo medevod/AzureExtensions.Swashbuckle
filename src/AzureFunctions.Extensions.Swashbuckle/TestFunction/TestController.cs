@@ -18,14 +18,14 @@ namespace TestFunction
     [ApiExplorerSettings(GroupName = "testee")]
     public class TestController
     {
-        [ProducesResponseType(typeof(TestModel[]), (int)HttpStatusCode.OK)]
-        [FunctionName("TestGets")]
-        [QueryStringParameter("expand", "it is expand parameter", DataType = typeof(int), Required = true)]
-        public async Task<IActionResult> Gets([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "test")]
-            HttpRequest request)
-        {
-            return new OkObjectResult(new[] { new TestModel(), new TestModel() });
-        }
+        //[ProducesResponseType(typeof(TestModel[]), (int)HttpStatusCode.OK)]
+        //[FunctionName("TestGets")]
+        //[QueryStringParameter("expand", "it is expand parameter", DataType = typeof(int), Required = true)]
+        //public async Task<IActionResult> Gets([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "test")]
+        //    HttpRequest request)
+        //{
+        //    return new OkObjectResult(new[] { new TestModel(), new TestModel() });
+        //}
 
         /// <summary>
         /// TestGet Function

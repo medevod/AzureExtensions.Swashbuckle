@@ -136,6 +136,7 @@ namespace AzureFunctions.Extensions.Swashbuckle.SwashBuckle.Providers
 
         private bool TryGetHttpTrigger(MethodInfo methodInfo, out HttpTriggerAttribute triggerAttribute)
         {
+             
             triggerAttribute = null;
             var ignore = methodInfo.GetCustomAttributes().Any(x => x is SwaggerIgnoreAttribute);
             if (ignore)
