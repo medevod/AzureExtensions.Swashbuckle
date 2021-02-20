@@ -11,6 +11,7 @@ using AzureFunctions.Extensions.Swashbuckle.Attribute;
 using System.Net.Http;
 using AzureFunctions.Extensions.Swashbuckle;
 using System.Net;
+using WidgetApi.FunctionHelpers;
 
 namespace Sample2
 {
@@ -21,10 +22,13 @@ namespace Sample2
         [FunctionName("PostOrder")]
         public static async Task<IActionResult> PostOrder(
              [HttpTrigger(AuthorizationLevel.Anonymous,  "post", Route = "order")]
-             [RequestBodyType(typeof(Order), "Order")] HttpRequest req,
-            
+             [RequestBodyType(typeof(Order), "Order")]  Order order ,
+
              ILogger log)
-        { 
+        {
+            var validator = new OrderValidator();
+            var result=validator.Validate(order);
+
             log.LogInformation("C# HTTP trigger function processed a request.");
 
 
@@ -42,7 +46,7 @@ namespace Sample2
             //    ? "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response."
             //    : $"Hello, {name}. This HTTP triggered function executed successfully.";
 
-            return new OkObjectResult(req);
+            return new OkObjectResult(result);
         }
 
 
@@ -52,6 +56,7 @@ namespace Sample2
         [FunctionName("GetOrder")]
         public static async Task<IActionResult> GetOrder(
             [HttpTrigger(AuthorizationLevel.Anonymous, "get",  Route = "order")] HttpRequest req,
+             
             ILogger log)
         {
              
